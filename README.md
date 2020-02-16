@@ -21,5 +21,5 @@ Things you may want to cover:
 - Services (job queues, cache servers, search engines, etc.)
 
 - Deployment instructions
-
+  - This app is run on heroku by traditonal means. We probably could set it up for "deploy on Heroku" button.
 - ...

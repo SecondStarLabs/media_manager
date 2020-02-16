@@ -1,0 +1,45 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Media_assets</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_media_asset_path, class: 'btn btn-primary' do %>
+    Add New Media asset
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Title</th>
+            <th>Description</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @media_assets.each do |media_asset| %>
+        <%= content_tag :tr, id: dom_id(media_asset), class: dom_class(media_asset) do %>
+          
+
+                      <td><%= media_asset.title %></td>
+                      <td><%= media_asset.description %></td>
+          
+          
+            <td><%= link_to 'Show', media_asset %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

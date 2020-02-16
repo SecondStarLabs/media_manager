@@ -1,0 +1,39 @@
+<%= form_with(model: asset, local: true) do |form| %>
+  <% if asset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
+
+      <ul>
+      <% asset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if asset.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', asset, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if asset.persisted? %>
+      <%= link_to "Cancel", asset, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", assets_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to assets_path, class: 'btn btn-default' do %>
+    All Assets
+  <% end %>
+  <%= link_to edit_asset_path(@asset), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show asset</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Title:</dt>
+  <dd><%= @asset.title %></dd>
+
+  <dt>Description:</dt>
+  <dd><%= @asset.description %></dd>
+
+</dl>

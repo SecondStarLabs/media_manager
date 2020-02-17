@@ -53,35 +53,22 @@
 }
 </style>
 
-<%= link_to 'current file', current_file, target: :blank %>          
-<%= link_to(current_file, target: :blank, class: "card") do %>          
-        <div class="thumb" style="background-image: url(file);"></div>
-        <article>
-          <h1><%= filename %></h1>
-          
-              <span>
-                <i class="fas fa-lg fa-camera" style="color: black;"></i> <%= media_subtype %> &nbsp;
-                <span class="date">
-                  <%= file_created_at %>
+<div class="item-6">
+  
+  <%= link_to(current_file, target: :blank, class: "card") do %>          
+          <div class="thumb" 
+            style="background-image: url(<%= rails_representation_url(thumbnail_file) %>);"> <!--image should be in the background of the div -->
+            <%#= image_tag current_file, alt: filename %>
+          </div>
+          <article>
+            <h1><%= @media_asset.title %></h1>
+            
+                <span>
+                  <i class="fas fa-lg fa-camera" style="color: black;"></i> <%= media_subtype %> &nbsp;
+                  <span class="date">
+                    <%= file_created_at %>
+                  </span>
                 </span>
-              </span>
-        </article>
-<% end %>
-          
-   <div class="item-6">
-
-      
-      <a href="https://photography.tutsplus.com/articles/5-inspirational-business-portraits-and-how-to-make-your-own--cms-27338" class="card">
-        <div class="thumb" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/flor.jpg);"></div>
-        <article>
-          <h1>5 Inspirational Business Portraits and How to Make Your Own</h1>
-          
-              <span>
-                <i class="fas fa-lg fa-camera" style="color: black;"></i> photo&nbsp;
-                <span class="date">
-                  16 Jan
-                </span>
-              </span>
-        </article>
-      </a>
-    </div>
+          </article>
+  <% end %>
+</div>   

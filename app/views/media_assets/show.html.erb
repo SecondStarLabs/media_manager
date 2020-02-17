@@ -17,10 +17,33 @@
 
   <dt>Files:</dt>
   <dd><% @media_asset.files.each do |file| %>
-      <%= link_to file.filename, file, target: :blank %>
-  
+        <%= link_to file.filename, file, target: :blank %>
+        <% full_media_type = @media_asset.get_structured_content_type(file)%>
+        <% media_type = full_media_type.media_type.to_s %>
+        <P>media type is <%= media_type %> </P>
+        <p>media subtype is <%=  full_media_type.media_subtype%> </p>
+        <p>my id is <%= file.id%> </p>
+        <p>my filename is <%= file.filename%> </p>
+        <p>=======================</p>
+        <% if media_type == "image" %>
+          <p>i am an image</p>
+        <%= render partial: "image_card", 
+            locals: {filename: file.filename,
+                      current_file: file,
+                      media_subtype: full_media_type.media_subtype,
+                      file_created_at: file.created_at.strftime("%d %b")            
+            } 
+        %>
+        <% elsif media_type == "video" %>
+          <p>i am an video</p>
+
+        <%= render 'video_card' %>
+        <% else %>
+          <p>I am something else</p>
+          <%= render 'file_card' %>
+        <% end %>
+        
       <% end %>
-  
   </dd>
 
 </dl>

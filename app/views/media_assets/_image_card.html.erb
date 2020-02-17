@@ -1,0 +1,87 @@
+<style>
+.card {
+  background: white;
+  text-decoration: none;
+  color: #444;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  
+  position: relative;
+  top: 0;
+  transition: all .1s ease-in;
+}
+
+.card:hover {
+  top: -2px;
+  box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+}
+
+.card article {
+  padding: 20px;
+}
+
+.card .thumb {
+  padding-bottom: 60%;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* typography */
+.card h1 {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+}
+
+.card p { 
+  line-height: 1.4;
+}
+
+.card span {
+  font-size: 12px;
+  font-weight: bold;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin: 2em 0 0 0;
+}
+
+.date {
+  white-space:nowrap;
+}
+</style>
+
+<%= link_to 'current file', current_file, target: :blank %>          
+<%= link_to(current_file, target: :blank, class: "card") do %>          
+        <div class="thumb" style="background-image: url(file);"></div>
+        <article>
+          <h1><%= filename %></h1>
+          
+              <span>
+                <i class="fas fa-lg fa-camera" style="color: black;"></i> <%= media_subtype %> &nbsp;
+                <span class="date">
+                  <%= file_created_at %>
+                </span>
+              </span>
+        </article>
+<% end %>
+          
+   <div class="item-6">
+
+      
+      <a href="https://photography.tutsplus.com/articles/5-inspirational-business-portraits-and-how-to-make-your-own--cms-27338" class="card">
+        <div class="thumb" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/flor.jpg);"></div>
+        <article>
+          <h1>5 Inspirational Business Portraits and How to Make Your Own</h1>
+          
+              <span>
+                <i class="fas fa-lg fa-camera" style="color: black;"></i> photo&nbsp;
+                <span class="date">
+                  16 Jan
+                </span>
+              </span>
+        </article>
+      </a>
+    </div>

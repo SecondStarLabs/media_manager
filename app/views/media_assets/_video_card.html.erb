@@ -52,10 +52,7 @@
   white-space:nowrap;
 }
 </style>
-
-  <div class="item-6">
-    <a href="https://photography.tutsplus.com/articles/5-inspirational-business-portraits-and-how-to-make-your-own--cms-27338"
-      class="card">
+<div class="item-5 card">
       <div class="video-thumb">
         <!--    <p>This page uses HTML5 Video and captions to demonstrate the possibilities and potentials of the platform. Please note that it uses APIs that are still in development and that may change with little or no warning.  I deemed the risk acceptable for the benefits that we get using them now.</p> 
   
@@ -63,11 +60,19 @@
   
       <p>This is the video we will work with. It uses a movie from the Blender Foundation (thanks :) )</p>-->
         <div class="vide-container">
-          <video class='video' controls="controls" preload='none' width="100%"
-            poster="http://media.w3.org/2010/05/sintel/poster.png">
-            <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
-            <source id='webm' src="http://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm' />
-            <source id='ogv' src="http://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg' />
+          <%= content_tag :video, 
+              class:'video',
+              controls: "controls",
+            preload: 'none',
+            width: "100%",
+            poster: thumbnail_file do -%>
+
+              <%= content_tag :source,
+                id: 'mp4',
+                src: current_file, 
+                type: 'video/mp4' do -%>
+              <% end %>
+
             <!--
             Track to be used for accessibility using the VTT standard. 
   
@@ -85,19 +90,24 @@
             We're not using Flash as a fallback option. It should be coverage enough to 
           -->
             <p>Your user agent does not support the HTML5 Video element.</p>
-          </video>
+
+          <% end -%>
+
+
           <div id="extras"></div> <!-- End Extras -->
         </div> <!-- End Container -->
       </div>
       <article>
-        <h1>Movie Trailer</h1>
+        <h1><%= @media_asset.title %> </h1>
   
         <span>
-          <i class="fas fa-lg fa-video" style="color: inherit;"></i> video&nbsp;
+          <i class="fas fa-lg fa-video" style="color: inherit;"></i> <%= media_subtype %>&nbsp;
           <span class="date">
-            16 Jan
+            <%= file_created_at %>
           </span>
         </span>
       </article>
-    </a>
+    </div>
   </div>
+
+

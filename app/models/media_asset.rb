@@ -1,5 +1,6 @@
 class MediaAsset < ApplicationRecord
     has_many_attached :files
+    has_one_attached :avatar
 
     def list_accepted_mimes
         mimes = ["application", "audio", "image", "message", "model", "multipart", "text", "video"]

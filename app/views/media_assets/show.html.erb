@@ -29,7 +29,7 @@
               } 
           %>
         <% elsif media_type == "video" %>
-          <p>i am an video</p>
+
         <%= render partial: "video_card", 
             locals: {filename:          file.filename,
                       current_file:     rails_blob_url(file),
@@ -40,8 +40,14 @@
         %>
 
         <% else %>
-          <p>I am something else</p>
-          <%= render 'file_card' %>
+
+          <%= render partial: "file_card", 
+              locals: {filename: file.filename,
+                        current_file: file,
+                        media_subtype: full_media_type.media_subtype,
+                        file_created_at: file.created_at.strftime("%d %b")            
+              } 
+          %>
         <% end %>
         
       <% end %>

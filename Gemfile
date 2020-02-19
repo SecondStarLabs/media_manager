@@ -73,3 +73,4 @@ gem 'whenever', require: false
 ## custom gems for app
 # interact with S3
 gem 'aws-sdk-s3', '~> 1.60', '>= 1.60.2'
+gem 'image_processing', '~> 1.10', '>= 1.10.3'

@@ -69,6 +69,7 @@ class MediaAssetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def media_asset_params
-      params.require(:media_asset).permit(:title, :description, files: [])
+      params.require(:media_asset)
+        .permit(:title, :description, :avatar, files: [])
     end
 end

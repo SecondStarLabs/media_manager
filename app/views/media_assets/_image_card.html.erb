@@ -1,0 +1,74 @@
+<style>
+.card {
+  background: white;
+  text-decoration: none;
+  color: #444;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  
+  position: relative;
+  top: 0;
+  transition: all .1s ease-in;
+}
+
+.card:hover {
+  top: -2px;
+  box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+}
+
+.card article {
+  padding: 20px;
+}
+
+.card .thumb {
+  padding-bottom: 60%;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* typography */
+.card h1 {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+}
+
+.card p { 
+  line-height: 1.4;
+}
+
+.card span {
+  font-size: 12px;
+  font-weight: bold;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin: 2em 0 0 0;
+}
+
+.date {
+  white-space:nowrap;
+}
+</style>
+
+<div class="item-6">
+  
+  <%= link_to(current_file, target: :blank, class: "card") do %>          
+          <div class="thumb" 
+            style="background-image: url(<%= rails_representation_url(thumbnail_file) %>);"> <!--image should be in the background of the div -->
+            <%#= image_tag current_file, alt: filename %>
+          </div>
+          <article>
+            <h1><%= @media_asset.title %></h1>
+            
+                <span>
+                  <i class="fas fa-lg fa-camera" style="color: black;"></i> <%= media_subtype %> &nbsp;
+                  <span class="date">
+                    <%= file_created_at %>
+                  </span>
+                </span>
+          </article>
+  <% end %>
+</div>   

@@ -1,26 +1,56 @@
 <div class="page-header">
   <%= link_to media_assets_path, class: 'btn btn-default' do %>
-    All Media_assets
+    << All Media_assets
   <% end %>
   <%= link_to edit_media_asset_path(@media_asset), class: 'btn btn-primary' do %>
     Edit
   <% end %>
-  <h1>Show media_asset</h1>
+  <h1><%= @media_asset.title %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt>Title:</dt>
-  <dd><%= @media_asset.title %></dd>
-
   <dt>Description:</dt>
   <dd><%= @media_asset.description %></dd>
 
   <dt>Files:</dt>
-  <dd><% @media_asset.files.each do |file| %>
-      <%= link_to file.filename, file, target: :blank %>
-  
+  <dd>
+  <% @media_asset.files.each do |file| %>
+        <%= link_to file.filename, file, target: :blank %>
+        <% full_media_type = @media_asset.get_structured_content_type(file)%>
+        <% media_type = full_media_type.media_type.to_s %>
+        
+        <% if media_type == "image" %>
+          <%= render partial: "image_card", 
+              locals: {filename: file.filename,
+                        current_file: file,
+                        thumbnail_file: file.variant(thumbnail: '600x>'),
+                        media_subtype: full_media_type.media_subtype,
+                        file_created_at: file.created_at.strftime("%d %b")            
+              } 
+          %>
+        <% elsif media_type == "video" %>
+
+        <%= render partial: "video_card", 
+            locals: {filename:          file.filename,
+                      current_file:     rails_blob_url(file),
+                      thumbnail_file:   rails_blob_path(@media_asset.avatar),
+                      media_subtype:    full_media_type.media_subtype,
+                      file_created_at:  file.created_at.strftime("%d %b")            
+            } 
+        %>
+
+        <% else %>
+
+          <%= render partial: "file_card", 
+              locals: {filename: file.filename,
+                        current_file: file,
+                        media_subtype: full_media_type.media_subtype,
+                        file_created_at: file.created_at.strftime("%d %b")            
+              } 
+          %>
+        <% end %>
+        
       <% end %>
-  
   </dd>
 
 </dl>
